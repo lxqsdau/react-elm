@@ -1,0 +1,8 @@
+node_modules
+npm-debug.log
+package-lock.json
+.DS_Store
+# 忽略使用VSCode开发时，生成的缓存文件夹
+.vscode
+# 忽略使用WebStorm开发时，生成的缓存文件夹
+.idea

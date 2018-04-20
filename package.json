@@ -1,0 +1,28 @@
+{
+  "name": "react-elm",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lxqsdau/react-elm.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lxqsdau/react-elm/issues"
+  },
+  "homepage": "https://github.com/lxqsdau/react-elm#readme",
+  "devDependencies": {
+    "webpack": "^4.6.0"
+  },
+  "dependencies": {
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
+    "react-router-dom": "^4.2.2"
+  }
+}
