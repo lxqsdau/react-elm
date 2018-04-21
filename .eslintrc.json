@@ -1,0 +1,36 @@
+{
+    "extends": "airbnb",
+    "parser": "babel-eslint",
+    "env": {
+        "browser": true,
+        "es6": true,
+        "node": true
+    },
+    "plugins": [
+        "react"
+    ],
+    "globals": {
+        "axios": true,
+        "classnames": true,
+        "React": true,
+        "ReactDOM": true,
+        "ReactRouterDOM": true,
+        "Mobx": true,
+        "MobxReact": true,
+        "i18n": true
+    },
+    "rules": {
+        "no-tabs": 0,
+        "indent": ["error", "tab"],
+        "comma-dangle": ["error", "never"],
+        "react/jsx-filename-extension": [2, { "extensions": [".js"] }],
+        "import/extensions": [2, {"extensions": [".tsx"]}],
+        "react/jsx-indent": [2, "tab"],
+        "no-bitwise": 0,
+        "quote-props":[0, "always"],
+        "import/no-extraneous-dependencies": 0,
+        "jsx-a11y/anchor-is-valid": 0,
+        "react/no-did-mount-set-state": 0,
+        "import/no-unresolved": 0
+    }
+}
