@@ -19,6 +19,7 @@ export default function asyncComponent(importComponent) {
 		}
 
 		render() {
+			console.log('动态');
 			const C = this.state.component;
 
 			return C ? <C {...this.props} /> : null;
