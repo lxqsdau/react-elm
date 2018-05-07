@@ -15,7 +15,7 @@ const store = createStore(rootReducer);
 
 const App = () => (
 	<div className="react-elm">
-		<Provider store={store}>
+		<Provider store={store} app="22">
 			<Router>
 				<Switch>
 					<Route exact path="/" component={Home} />
@@ -32,6 +32,7 @@ ReactDOM.render(
 	<App />,
 	document.getElementById('App'),
 );
+
 
 /*
 function test(target) {

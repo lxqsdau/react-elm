@@ -17,11 +17,16 @@ class Home extends React.Component {
 		age: 0
 	}
 	componentWillMount() {
+		/*
 		this.setState({
 			age: 2
 		});
+		*/
 	}
 	componentDidMount() {
+		console.log(this.props);
+		console.log(this.context);
+		/*
 		this.setState({
 			num: this.state.num + 1
 		});
@@ -34,11 +39,17 @@ class Home extends React.Component {
 		});
 		// 注意：在 addEventListener、setTimeout、ajax 回调中 this.setState 是立即触发的。
 		document.getElementById('testButton').addEventListener('mouseleave', this.onMouseLeaveHandler);
+		*/
 	}
 	onMouseLeaveHandler = () => {
 		console.log(`State before (mouseleave): ${JSON.stringify(this.state)}`);
+		// 会触发两次render
 		this.setState({
 			dollars: this.state.dollars + 20
+		});
+		console.log(`State before (mouseleave): ${JSON.stringify(this.state)}`);
+		this.setState({
+			dollars: this.state.dollars + 30
 		});
 		console.log(`State after (mouseleave): ${JSON.stringify(this.state)}`);
 	}
@@ -62,9 +73,9 @@ class Home extends React.Component {
 			this.setState({
 				count: 1
 			});
-			this.setState({
-				count: 2
-			});
+			// this.setState({
+			// 	count: 2
+			// });
 		}, 0);
 	}
 	render() {
@@ -90,7 +101,8 @@ class Home extends React.Component {
 }
 
 
-export default connect(state => ({ data: state.home2.a }))(Home);
+export default connect(state => ({ data: state.home2.a }), () => {})(Home);
+// export default connect()(Home);
 
 /**
  * 定时器，原生事件，ajax每次setState都会触发render
@@ -104,8 +116,12 @@ export default connect(state => ({ data: state.home2.a }))(Home);
  *
  * 不变：工资12500 公积金基数1860  公积金223   社保296.03  应征税工资12500 - 223 - 296.03 = 11980.97 税1141.19  实发11980.97 - 1141.19 - 24.47 = 10815.31
  * 节省：公积金多交 2177 - 223 = 1954 税1141.19 - 750.39 = 390.8  工资10815.31 - 9252.11 = 1563.2
+ *
+ *
  * 按工资12500 公积金基数10000 应得总额：公积金2177 + 工资9252.11 = 11429.11
  * 按工资12500 公积金基数1860  应得总额：公积金223 + 工资10815.31 = 11038.31   少：11429.11 - 11038.31 = 390
+ * 公积金多交2177 - 223 = 1954 工资少10815.31 - 9252.11 = 1563.20  总多1954 - 1563.20 = 390
+ *
  * 调整：工资12500 公积金基数12500 公积金2777 社保296.03   应征税工资12500 - 2777 - 296.03 = 9426.97  税630.39  实发9426.97 - 630.39 - 24.47 = 8772.11
  * 节省750.39 - 630.39 = 120
  */

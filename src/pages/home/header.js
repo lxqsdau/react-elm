@@ -2,7 +2,14 @@ import './header.less';
 
 class Header extends React.Component {
 	state = {}
+	componentDidMount() {
+		console.log('Header--componentDidMount');
+	}
+	componentWillReceiveProps() {
+		console.log('Header--componentWillReceiveProps');
+	}
 	render() {
+		console.log('Header--render');
 		return (
 			<div className="home-header">
 				<h2>react-elm</h2>
@@ -12,3 +19,7 @@ class Header extends React.Component {
 	}
 }
 export default Header;
+/**
+ * 第一次渲染 render componentDidMount
+ * 父组件state更新 componentWillReceiveProps  render
+ */
