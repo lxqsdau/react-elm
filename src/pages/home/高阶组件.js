@@ -3,12 +3,16 @@
  */
 
 // 给组件传入username
-export default (OddEle) => {
-	class NewComponent extends React.Component {
-		state = {}
-		render() {
-			return <OddEle username="liu" />;
-		}
+
+const getDisplayName = component => component.displayName || component.name || 'Component';
+export default WrappedComponent => class HOC extends React.Component {
+	static displayName = `HOC(${getDisplayName(WrappedComponent)})`
+	render() {
+		return (
+			<div className="gao">
+				<div>标题</div>
+				<WrappedComponent {...this.props} />
+			</div>
+		);
 	}
-	return NewComponent;
 };
