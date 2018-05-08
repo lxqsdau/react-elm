@@ -8,8 +8,43 @@
 
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
-
+const glob = require('glob');
+// 通过 html-webpack-plugin 生成的 HTML 集合
+const HTMLPlugins = [];
+// 入口文件集合
+const Entries = {};
+console.log('哈哈');
+function getEntryDir() {
+	const globPath = 'src/pages/**/index.js';
+	const files = glob.sync(globPath);
+	// console.log(files);
+	// let dirname;
+	const entries = [];
+	for (let i = 0, len = files.length; i < len; i += 1) {
+		// dirname = path.dirname(files[i]);
+		entries.push({
+			html: files[i]
+			// dir: dirname.replace(new RegExp(`^${pathDir}`), '$2')
+		});
+	}
+	return entries;
+}
+getEntryDir().forEach((page) => {
+	console.log(page.html);
+	const pathArr = page.html.split('/');
+	// console.log(pathArr)
+	const fileName = pathArr[pathArr.length - 1 - 1];
+	// console.log(fileName)
+	const htmlPlugin = new HtmlWebpackPlugin({
+		filename: `${fileName}.html`,
+		template: `./html/${fileName}.html`,
+		chunks: [`${fileName}`]
+	});
+	HTMLPlugins.push(htmlPlugin);
+	Entries[fileName] = path.resolve(page.html);
+});
 module.exports = {
+	entry: Entries,
 	// 配置模块如何解析
 	resolve: {
 		extensions: ['.js', '.less'], // 用于指明程序自动补全识别哪些后缀
@@ -42,10 +77,11 @@ module.exports = {
 		]
 	},
 	plugins: [
-		new HtmlWebpackPlugin({
-			template: './html/index.html',
-			favicon: './html/favicon.ico'
-		})
+		// new HtmlWebpackPlugin({
+		// 	template: './html/index.html',
+		// 	favicon: './html/favicon.ico'
+		// }),
+		...HTMLPlugins
 	],
 	optimization: {},
 	devServer: {
