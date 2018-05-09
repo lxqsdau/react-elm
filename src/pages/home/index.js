@@ -1,8 +1,8 @@
 import Home from './home';
 
-// export default Home;
+export default Home;
 
-ReactDOM.render(
-	<Home />,
-	document.getElementById('Home'),
-);
+// ReactDOM.render(
+// 	<Home />,
+// 	document.getElementById('Home'),
+// );

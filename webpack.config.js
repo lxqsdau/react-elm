@@ -44,7 +44,7 @@ getEntryDir().forEach((page) => {
 	Entries[fileName] = path.resolve(page.html);
 });
 module.exports = {
-	entry: Entries,
+	// entry: Entries,
 	// 配置模块如何解析
 	resolve: {
 		extensions: ['.js', '.less'], // 用于指明程序自动补全识别哪些后缀
@@ -77,11 +77,11 @@ module.exports = {
 		]
 	},
 	plugins: [
-		// new HtmlWebpackPlugin({
-		// 	template: './html/index.html',
-		// 	favicon: './html/favicon.ico'
-		// }),
-		...HTMLPlugins
+		new HtmlWebpackPlugin({
+			template: './html/index.html',
+			favicon: './html/favicon.ico'
+		})
+		// ...HTMLPlugins
 	],
 	optimization: {},
 	devServer: {

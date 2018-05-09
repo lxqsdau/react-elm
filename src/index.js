@@ -1,17 +1,18 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { Route, HashRouter as Router, Switch } from 'react-router-dom';
-import { createStore } from 'redux';
-import { Provider } from 'react-redux';
-import 'app';
+import Thenjs from 'thenjs';
+// import { Route, HashRouter as Router, Switch } from 'react-router-dom';
+// import { createStore } from 'redux';
+// import { Provider } from 'react-redux';
+// import 'app';
 // import Home from 'pages/home';
-import Module from 'pages/Module 的语法';
-import asyncComponent from 'components/AsyncComponent';
-import rootReducer from './store/reducers';
+// import Module from 'pages/Module 的语法';
+// import asyncComponent from 'components/AsyncComponent';
+// import rootReducer from './store/reducers';
 
-const Car = asyncComponent(() => import('./pages/car/car')); // 异步加载模块
+// const Car = asyncComponent(() => import('./pages/car/car')); // 异步加载模块
 
-const store = createStore(rootReducer);
+// const store = createStore(rootReducer);
 /*
 const App = () => (
 	<div className="react-elm">
@@ -27,6 +28,7 @@ const App = () => (
 	</div>
 );
 */
+/*
 function test(WrappedComponent) {
 	// console.log(WrappedComponent, 'a'); // HOC2
 	// console.log(WrappedComponent.defaultProps)
@@ -42,7 +44,7 @@ function test(WrappedComponent) {
 			console.log(this, '高阶组件返回');
 			return (
 				<div className="body">
-					<WrappedComponent dispatch="dispatch" /> {/* 相当于给HOC2传递了属性 */}
+					<WrappedComponent dispatch="dispatch" /> {/* 相当于给HOC2传递了属性 }
 					456
 				</div>
 			);
@@ -55,7 +57,8 @@ function test(WrappedComponent) {
 	}
 	return HOC;
 }
-
+*/
+/*
 function looding(WrappedComponent) {
 	// console.log(WrappedComponent, 'b'); // app
 	class HOC2 extends React.Component {
@@ -77,6 +80,7 @@ function looding(WrappedComponent) {
 	}
 	return HOC2;
 }
+*/
 /**
  * 1 looding
  * <HOC2>
@@ -86,15 +90,27 @@ function looding(WrappedComponent) {
  * <HOC className="body"><HOC2 dispatch="dispatch"></HOC2>456</HOC> 返回一个组合好的组件 然后再渲染
  * 首先从最外层开始渲染
  */
-@test
+// @test
 // @looding // 先包装loading
+// 模仿查询回调函数
+function task(arg, callback) {
+	setTimeout(() => { callback(null, arg); }, 5000);
+}
+Thenjs.eachSeries([0, 1, 2], (cont, value) => {
+	console.log(value);
+	task(value * 2, cont);
+})
+	.then((cont, result) => {
+		console.log(result);
+	});
+console.log('哈哈');
 class App extends React.Component {
 	static defaultProps = {
 		aa: 1
 	}
-	method = () => {}
+	// method = () => {}
 	componentDidMount() {
-		console.log(this.props, '2'); // {} 空对象
+		// console.log(this.props, '2'); // {} 空对象
 	}
 	render() {
 		return (
